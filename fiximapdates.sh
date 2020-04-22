@@ -85,7 +85,7 @@ process_cur_directory() {
 
 
 # Recursively traverse a dovecot maildir directory structure looking for directories called 'cur'
-# The script redate_mail_file.sh is executed on each file within the 'cur' directory.
+# The function process_mail_file is executed on each file within the 'cur' directory.
 # In the 'cur' directory's parent directory, the files "dovecot.index*" and "dovecot.list*" are deleted.
 
 find "$1" -type d -name cur -print | while read line ; do
