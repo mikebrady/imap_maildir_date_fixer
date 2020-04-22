@@ -68,7 +68,6 @@ process_cur_directory() {
 	C=`(find "$1" -type f -print | grep -c '.*' ) # 2>/dev/null`
 	if [ $C -ne 0 ] ; then
         	echo "    Updating $C mail files in \"$PD\"..."
-        	#find "$1" -type f -exec /root/redate_mail_file.sh {} \; # > /dev/null 2>&1
 		find "$1" -type f -maxdepth 1 -print | nl -s \| | while read line ; do
         		LN=`echo $line | cut -d \| -f 1`
         		FP=`echo $line | cut -d \| -f 2-`
