@@ -15,7 +15,11 @@ The solution sounds pretty simple: extract each email's actual datefrom its mail
 3. It deletes the `dovecot.index`, `dovecot.index.cache`, `dovecot.list.index` files from the `cur` directory's parent directory.
 
 # Solving the Problem
-Run the script in supervisor mode, giving it the parent directory as an argument. In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individucal users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
+Run the script in supervisor mode, giving it the parent directory as an argument.
+
+Note: you must turn off `dovecot` and possibly `postfix` while this is happening, otherwise the index files may be kept in existence and may not be deleted properly.
+
+In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individucal users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
 
 ```
 # fiximapdates /var/mail/vhosts/domain.com/joe
@@ -29,6 +33,8 @@ This will trawl through all the mail of all users with email accounts on this se
 ```
 # fiximapdates /var/mail/vhosts
 ```
+
+
 This will trawl through all the mail of all users with email accounts on the server.
 # Using the Script
 Here is the start of a log of a session with fiximapdates traversing a 30 GB Maildir repository. The last line is an indicator that updates to give you an idea of progress.
