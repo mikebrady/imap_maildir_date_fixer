@@ -31,7 +31,7 @@ This will trawl through all the mail of all users with email accounts on this se
 ```
 This will trawl through all the mail of all users with email accounts on the server.
 # Using the Script
-Here is the start of a log of a session with fiximapdates traversing a 30 GB Maildir repository.
+Here is the start of a log of a session with fiximapdates traversing a 30 GB Maildir repository. The last line is an indicator that updates to give you an idea of progress.
 ```
 # ./fiximapdates.sh /var/mail/vhosts/domain.com
 Processing "/var/mail/vhosts/domain.com/administrator/.Apple Mail To Do"
