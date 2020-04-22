@@ -31,7 +31,7 @@ This will trawl through all the mail of all users with email accounts on this se
 ```
 This will trawl through all the mail of all users with email accounts on the server.
 # Using the Script
-Here is the start of a log of a session with fiximapdates traversing a 30 GB Maildir repository.
+Here is the start of a log of a session with fiximapdates traversing a 30 GB Maildir repository. The last line is an indicator that updates to give you an idea of progress.
 ```
 # ./fiximapdates.sh /var/mail/vhosts/domain.com
 Processing "/var/mail/vhosts/domain.com/administrator/.Apple Mail To Do"
@@ -111,12 +111,12 @@ Files checked: 1680
 ```
 
 # Finishing Up
-Once you have repaired the information on the mail server, you need to update the clients. This may be messy because the clients may have local copies of the mail on the server that will now be out of date. One easy way is simply to completely delete and recreate the account. (Note, it's proably not enough to disable and then re-enable the account, as the local copies may be preserved when the account is disabled and returned to use when the account is re-enabled.)
+Once you have repaired the information on the mail server, you need to update the clients. This may be messy because the clients could have local copies of the mail that will now be out of date. One easy way is simply to completely delete and recreate the client account. (Note, it's probably not enough to disable and then re-enable the account, as the local copies may be preserved when the account is disabled and returned to use when the account is re-enabled.)
 
 # Limitations
 1. It only fixes up problems due to incorrect modification dates on Maildir files.
 2. It maps dates and times to local time using the `date` utility. It has not been tested in different locales. Things to watch out for are incorrect times and problems with non-english dates and date formats. It can be adjusted or enhanced easily with a little unix skill. 
-2. IT has not been extensively tested. Back up your mail repository before using it.
+2. It has not been extensively tested. Back up your mail repository before using it.
 3. The script was written for FreeBSD 12.1. It may need a little tweaking for Linux.
 4. It uses the first date it finds in a mail file, which may not always be exactly right.
 4. It's a bit slow.
