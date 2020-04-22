@@ -115,7 +115,7 @@ Once you have repaired the information on the mail server, you need to update th
 
 # Limitations
 1. It only fixes up problems due to incorrect modification dates on Maildir files.
-2. It maps dates and times to local time using the `date` utility. It has not been tested in different locales. Things to watch out for are incorrect times and problems with non-english dates and date formats. It can be adjusted or enhanced easily with a little unix skill. 
+2. It maps dates and times to local time using the `date` utility. It has not been tested in different locales. Things to watch out for are incorrect times and problems with non-english dates and date formats. It can be adjusted or enhanced easily. 
 2. It has not been extensively tested. Back up your mail repository before using it.
 3. The script was written for FreeBSD 12.1. It may need a little tweaking for Linux.
 4. It uses the first date it finds in a mail file, which may not always be exactly right.
