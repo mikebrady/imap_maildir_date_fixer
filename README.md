@@ -1,5 +1,5 @@
 # IMAP Maildir Date Fixer
-This is a shell script to fix up date problems with IMAP mail repositories maintained by Dovecot email servers that use the Maildir format.
+This is a shell script to fix up date problems with `IMAP` mail repositories maintained by `Dovecot` email servers that use the `Maildir` format.
 
 # The Problem
 Some mail clients, such as macOS Mail and Microsoft Outlook for Macintosh, display incorrect dates for mail messages stored on a Dovecot IMAP mail server that uses the `Maildir` format to store emails.
