@@ -2,17 +2,17 @@
 This is a shell script to fix up date problems with IMAP mail repositories maintained by Dovecot email servers that use the Maildir format.
 
 # The Problem
-Some mail clients, such as macOS Mail and Microsoft Outlook for Macintosh, display incorrect dates for mail messages stored on a Dovecot IMAP mail server that uses the Maildir format to store emails.
+Some mail clients, such as macOS Mail and Microsoft Outlook for Macintosh, display incorrect dates for mail messages stored on a Dovecot IMAP mail server that uses the `Maildir` format to store emails.
 
 The reason for the incorrect dates is that the clients do not look at a mail's reception or transmission date -- instead, they use the modification date of the file containing the mail. If the modification date is different to the reception or transmission date, then the mail is tagged with the wrong date.
 
 The modification date can be inadventently changed if, for example, the mail repository is copied without preserving the modification date.
 
 # The Solution
-The solution sounds pretty simple: extract each email's actual datefrom its mail headers and use this to reset the file's modification date. That's just what this script does. But there's a little more to it:
+The solution sounds pretty simple: extract each email's actual date from its mail headers and use this to reset the file's modification date. That's just what this script does. But there's a little more to it:
 1. The script recursively crawls the directory you specify looking for all directories with the name `cur`.
 2. For each `cur` directory, it treats all the files in it at files containing emails, extracts a date from each one and sets the file's modification date to that.
-3. It deletes the `dovecot.index`, `dovecot.index.cache`, `dovecot.list.index` files from the `cur` directory's parent directory.
+3. It deletes the `dovecot.index`, `dovecot.index.cache`, `dovecot.list.index` files from the `cur` directory's parent directory. This causes the mail system to rebuild them using the now-updated file modification dates, thus fixing the problem on the server.
 
 # Solving the Problem
 
