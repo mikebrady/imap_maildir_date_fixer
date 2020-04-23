@@ -24,23 +24,24 @@ $ chmod 755 fiximapdates.sh
 1. Run the script in supervisor mode, giving it the parent directory as an argument -- see below for some examples.
 2. Restart `dovecot` to start using the updated information.
 
-In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individucal users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
+In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individual users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
 
 ```
 # ./fiximapdates.sh /var/mail/vhosts/domain.com/joe
 ```
-This will trawl through all the mail in all the `cur` directories belonging to the user joe@domain.com. It does not look in the `new` or `tmp` directories. It gives an indication of progress when updating a directory of mail files.
+This will trawl through all the mail in all the `cur` directories belonging to the user `joe@domain.com`. It does not look in the `new` or `tmp` directories. It gives an indication of progress when updating a directory of mail files.
 
 ```
 # ./fiximapdates /var/mail/vhosts/domain.com/
 ```
-This will trawl through all the mail of all users with email accounts on this server for domain.com.
+This will trawl through all the mail of all users with email accounts on this server for `domain.com`.
 ```
 # ./fiximapdates /var/mail/vhosts
 ```
 This will trawl through all the mail of all users with email accounts on the server.
 # Using the Script
-Here is the start of a log of a session with fiximapdates traversing a 30 GB Maildir repository. The last line is an indicator that updates to give you an idea of progress.
+Here is the start of a log of a session with `fiximapdates.sh` traversing a 30 GB Maildir repository. The last line is a progress indicator.
+
 ```
 # ./fiximapdates.sh /var/mail/vhosts/domain.com
 Processing "/var/mail/vhosts/domain.com/administrator/.Apple Mail To Do"
