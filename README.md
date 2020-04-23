@@ -2,9 +2,9 @@
 This is a shell script to fix up date problems with `IMAP` mail repositories maintained by `Dovecot` email servers that use the `Maildir` format.
 
 # The Problem
-Some mail clients, such as macOS Mail and Microsoft Outlook for Macintosh, display incorrect dates for mail messages stored on a Dovecot IMAP mail server that uses the `Maildir` format to store emails.
+Some mail clients, such as macOS Mail and Microsoft Outlook for Macintosh, display incorrect dates for mail messages stored on a `Dovecot` `IMAP` mail server that uses the `Maildir` format to store emails.
 
-The reason for the incorrect dates is that the clients do not look at a mail's reception or transmission date -- instead, they use the modification date of the file containing the mail. If the modification date is different to the reception or transmission date, then the mail is tagged with the wrong date.
+The reason for the incorrect dates is that the clients do not look at a mail's reception or transmission date – instead, they use the modification date of the file containing the mail. If the modification date is different to the reception or transmission date, then the mail is tagged with the wrong date.
 
 The modification date can be inadventently changed if, for example, the mail repository is copied without preserving the modification date.
 
@@ -21,7 +21,7 @@ Before you begin, make sure the script is executable, e.g. by doing:
 $ chmod 755 fiximapdates.sh
 ```
 
-1. Run the script in supervisor mode, giving it the parent directory as an argument -- see below for some examples.
+1. Run the script in supervisor mode, giving it the parent directory as an argument – see below for some examples.
 2. Restart `dovecot` to start using the updated information.
 
 In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individual users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
