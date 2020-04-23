@@ -121,7 +121,7 @@ Files checked: 1680
 ```
 
 # Finishing Up
-Once you have repaired the information on the mail server and restarted it to make use of the updated information, you need to update the clients. This could be messy because the clients typically local copies of the mail that will now be out of date. One easy way is simply to completely delete and recreate the client account. (Note, it's probably not enough to disable and then re-enable the account, as the local copies may be preserved when the account is disabled and returned to use when the account is re-enabled.)
+Once you have repaired the information on the mail server and restarted it to make use of the updated information, you need to update the clients. This can be messy because the clients typically local copies of the mail that will now be out of date. One easy way is simply to completely delete and recreate the client account. (Note, it's probably not enough to disable and then re-enable the account, as the local copies may be preserved when the account is disabled and returned to use when the account is re-enabled.)
 
 # Limitations
 1. It only fixes up problems due to incorrect modification dates on `Maildir` files.
