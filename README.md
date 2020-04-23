@@ -15,26 +15,29 @@ The solution sounds pretty simple: extract each email's actual datefrom its mail
 3. It deletes the `dovecot.index`, `dovecot.index.cache`, `dovecot.list.index` files from the `cur` directory's parent directory.
 
 # Solving the Problem
-Run the script in supervisor mode, giving it the parent directory as an argument.
 
-Note: you must turn off `dovecot` and possibly `postfix` while this is happening, otherwise the index files may be kept in existence and may not be deleted properly.
+Before you begin, make sure the script is executable, e.g. by doing:
+```
+$ chmod 755 fiximapdates.sh
+```
+
+1. Run the script in supervisor mode, giving it the parent directory as an argument -- see below for some examples.
+2. Restart `dovecot` to start using the updated information.
 
 In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individucal users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
 
 ```
-# fiximapdates /var/mail/vhosts/domain.com/joe
+# ./fiximapdates.sh /var/mail/vhosts/domain.com/joe
 ```
 This will trawl through all the mail in all the `cur` directories belonging to the user joe@domain.com. It does not look in the `new` or `tmp` directories. It gives an indication of progress when updating a directory of mail files.
 
 ```
-# fiximapdates /var/mail/vhosts/domain.com/
+# ./fiximapdates /var/mail/vhosts/domain.com/
 ```
 This will trawl through all the mail of all users with email accounts on this server for domain.com.
 ```
-# fiximapdates /var/mail/vhosts
+# ./fiximapdates /var/mail/vhosts
 ```
-
-
 This will trawl through all the mail of all users with email accounts on the server.
 # Using the Script
 Here is the start of a log of a session with fiximapdates traversing a 30 GB Maildir repository. The last line is an indicator that updates to give you an idea of progress.
@@ -117,10 +120,10 @@ Files checked: 1680
 ```
 
 # Finishing Up
-Once you have repaired the information on the mail server, you need to update the clients. This may be messy because the clients could have local copies of the mail that will now be out of date. One easy way is simply to completely delete and recreate the client account. (Note, it's probably not enough to disable and then re-enable the account, as the local copies may be preserved when the account is disabled and returned to use when the account is re-enabled.)
+Once you have repaired the information on the mail server and restarted it to make use of the updated information, you need to update the clients. This could be messy because the clients typically local copies of the mail that will now be out of date. One easy way is simply to completely delete and recreate the client account. (Note, it's probably not enough to disable and then re-enable the account, as the local copies may be preserved when the account is disabled and returned to use when the account is re-enabled.)
 
 # Limitations
-1. It only fixes up problems due to incorrect modification dates on Maildir files.
+1. It only fixes up problems due to incorrect modification dates on `Maildir` files.
 2. It maps dates and times to local time using the `date` utility. It has not been tested in different locales. Things to watch out for are incorrect times and problems with non-english dates and date formats. It can be adjusted or enhanced easily. 
 2. It has not been extensively tested. Back up your mail repository before using it.
 3. The script was written for FreeBSD 12.1. It may need a little tweaking for Linux.
