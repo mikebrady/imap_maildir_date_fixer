@@ -6,7 +6,7 @@ Some mail clients, such as macOS Mail and Microsoft Outlook for Macintosh, displ
 
 The reason for the incorrect dates is that the clients do not look at a mail's reception or transmission date – instead, they use the modification date of the file containing the mail. If the modification date is different to the reception or transmission date, then the mail is tagged with the wrong date.
 
-The modification date can be inadventently changed if, for example, the mail repository is copied without preserving the modification date.
+The modification date can inadventently be changed if, for example, the mail repository is copied without preserving the modification date.
 
 # The Solution
 The solution sounds pretty simple: extract each email's actual date from its mail headers and use this to reset the file's modification date. That's just what this script does. But there's a little more to it:
