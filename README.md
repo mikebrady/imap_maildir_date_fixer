@@ -22,7 +22,7 @@ $ chmod 755 fiximapdates.sh
 ```
 
 1. Run the script in supervisor mode, giving it the parent directory as an argument – see below for some examples.
-2. Restart `dovecot` to make it begin using the updated information.
+2. Restart `dovecot` to make it use the updated information.
 
 In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individual users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
 
