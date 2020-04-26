@@ -125,8 +125,9 @@ Once you have repaired the information on the mail server and restarted it to ma
 
 # Limitations
 1. It only fixes up problems due to incorrect modification dates on `Maildir` files.
-2. It maps dates and times to local time using the `date` utility. It has not been tested in different locales. Things to watch out for are incorrect times and problems with non-english dates and date formats. It can be adjusted or enhanced easily. 
-3. It has not been extensively tested. Back up your mail repository before using it.
-4. It uses the first date it finds in a mail file, which may not always be exactly right.
-5. It's a bit slow.
-6. The FreeBSD version is more selective in its acceptance of dates, and will reject more date formats than the Linux version.
+2. It maps dates and times to local time using the `date` utility in FreeBSD and the [GNU date input facilities](https://www.gnu.org/software/coreutils/manual/html_node/Date-input-formats.html#Date-input-formats) in Linux.
+  Linux is somewhat more flexible in its interpretation of date strings, but it can miss faulty strings. For instance, a date string without a time or zone information will be accepted by Linux but rejected by FreeBSD.
+3. It has not been tested in different locales. Things to watch out for are incorrect times and problems with non-english dates and date formats.
+4. It has not been extensively tested. Back up your mail repository before using it.
+5. It uses the first date it finds in a mail file, which may not always be exactly right.
+6. It's a bit slow.
