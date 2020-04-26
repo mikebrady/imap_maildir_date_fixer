@@ -1,5 +1,5 @@
 # IMAP Maildir Date Fixer
-This is a shell script to fix up date problems with `IMAP` mail repositories maintained by `Dovecot` email servers that use the `Maildir` format. The script works in FreeBSD only -- the `date` and `touch` commands in Linux are quite different to those in FreeBSD.
+This is a shell script to fix up date problems with `IMAP` mail repositories maintained by `Dovecot` email servers that use the `Maildir` format. There are separate versions for FreeBSD and Linux -- the `date` and `touch` commands are quite different in the two systems.
 
 # The Problem
 Some mail clients, such as macOS Mail and Microsoft Outlook for Macintosh, display incorrect dates for mail messages stored on a `Dovecot` `IMAP` mail server that uses the `Maildir` format to store emails.
