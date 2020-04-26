@@ -87,7 +87,16 @@ process_cur_directory() {
 # The function process_mail_file is executed on each file within the 'cur' directory.
 # In the 'cur' directory's parent directory, the files "dovecot.index*" and "dovecot.list*" are deleted.
 
-find "$1" -type d -name cur -print | while read line ; do
-	process_cur_directory "$line"
-done
+os=$(uname | tr '[:upper:]' '[:lower:]')
+case $os in
+  freebsd)
+        echo "Operating System \"$os\" recognised."
+        find "$1" -type d -name cur -print | while read line ; do
+                process_cur_directory "$line"
+        done
+        ;;
+  *)
+        echo "Unsupported operating system: \"$os\". Nothing done."
+        ;;
+esac
 

@@ -88,7 +88,7 @@ case $os in
 	done
 	;;
   *)
-	echo "Unsupported operating system: $OS. Nothing done."
+	echo "Unsupported operating system: \"$os\". Nothing done."
 	;;
 esac
 
