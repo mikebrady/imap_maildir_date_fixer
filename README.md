@@ -16,9 +16,9 @@ The solution sounds pretty simple: extract each email's actual date from its mai
 
 # Solving the Problem
 
-Before you begin, make sure the script is executable, e.g. by doing:
+Before you begin, make sure the script is executable, e.g. on FreeBSD by doing:
 ```
-$ chmod 755 fiximapdates.sh
+$ chmod 755 fiximapdates_bsd.sh
 ```
 
 1. Run the script in supervisor mode, giving it the parent directory as an argument – see below for some examples.
@@ -27,23 +27,23 @@ $ chmod 755 fiximapdates.sh
 In the following example, the mail server is set up to use Virtual Users, and all email is stored in `/var/mail/vhosts`. Individual domains are further in, and individual users are further in again. For example, to fix up the dates for user `joe` in the domain `domain.com`:
 
 ```
-# ./fiximapdates.sh /var/mail/vhosts/domain.com/joe
+# ./fiximapdates_bsd.sh /var/mail/vhosts/domain.com/joe
 ```
-This will trawl through all the mail in all the `cur` directories belonging to the user `joe@domain.com`. It does not look in the `new` or `tmp` directories. It gives an indication of progress when updating a directory of mail files.
+This will trawl through all the mail in all the `cur` directories belonging to the user `joe@domain.com` on a FreeBSD system. It does not look in the `new` or `tmp` directories. It gives an indication of progress when updating a directory of mail files.
 
 ```
-# ./fiximapdates /var/mail/vhosts/domain.com/
+# ./fiximapdates_linux.sh /var/mail/vhosts/domain.com/
 ```
-This will trawl through all the mail of all users with email accounts on this server for `domain.com`.
+This will trawl through all the mail of all users with email accounts on this server for `domain.com` on a Linux system.
 ```
-# ./fiximapdates /var/mail/vhosts
+# ./fiximapdates_linux.sh /var/mail/vhosts
 ```
-This will trawl through all the mail of all users with email accounts on the server.
+This will trawl through all the mail of all users with email accounts on a Linux server.
 # Using the Script
-Here is the start of a log of a session with `fiximapdates.sh` traversing a 30 GB Maildir repository. The last line is a progress indicator.
+Here is the start of a log of a session with `fiximapdates_bsd.sh` traversing a 30 GB Maildir repository. The last line is a progress indicator.
 
 ```
-# ./fiximapdates.sh /var/mail/vhosts/domain.com
+# ./fiximapdates_bsd.sh /var/mail/vhosts/domain.com
 Processing "/var/mail/vhosts/domain.com/administrator/.Apple Mail To Do"
 Processing "/var/mail/vhosts/domain.com/administrator/.Archive"
 Processing "/var/mail/vhosts/domain.com/administrator/.Deleted Messages (Administrator@Home)"
@@ -126,7 +126,7 @@ Once you have repaired the information on the mail server and restarted it to ma
 # Limitations
 1. It only fixes up problems due to incorrect modification dates on `Maildir` files.
 2. It maps dates and times to local time using the `date` utility. It has not been tested in different locales. Things to watch out for are incorrect times and problems with non-english dates and date formats. It can be adjusted or enhanced easily. 
-2. It has not been extensively tested. Back up your mail repository before using it.
-3. The script was written for FreeBSD 12.1. It may need a little tweaking for Linux.
+3. It has not been extensively tested. Back up your mail repository before using it.
 4. It uses the first date it finds in a mail file, which may not always be exactly right.
-4. It's a bit slow.
+5. It's a bit slow.
+6. The FreeBSD version is more selective in its acceptance of dates, and will reject more date formats than the Linux version.
