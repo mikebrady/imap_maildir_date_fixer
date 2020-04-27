@@ -46,7 +46,7 @@ process_mail_file () {
 
 	# Parse three different date formats
 	if [ "x$D" != "x" ] ; then
-               	echo "touch -c -m -d \"$D\" \"$1\""
+               	# echo "touch -c -m -d \"$D\" \"$1\""
                 touch -c -m -d "$D" "$1"
 	else
         	echo "    File \"$1\" -- can't find a date in it."
